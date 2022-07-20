@@ -1,1 +1,1 @@
-# CUDA-and-OpenMP-samples
+# Parallel Programming on CPU and GPU
