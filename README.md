@@ -1,7 +1,9 @@
 # Parallel Programming on CPU and GPU
 
 This repository contains some sample codes helpful in learning how to program with OpenMP and CUDA. Here we are
-going to go through each directory and explain the purpose of each file.
+going to go through each directory and explain the purpose of each file. First we are focusing on parallelization
+using OpenMP. Then we parallelize large calculations using CUDA and GPU. In the end, a sample project for calculating
+the determinant of large matrices is developed using both OpenMP and CUDA. 
 
 ## OpenMP
 
@@ -78,3 +80,13 @@ function. In the `pinned.cu`, the memory is allocated using `cudaMallocHost()` a
 to access the host memory. In order to use streaming and concurrent kernels, the memory must be pinned. In
 the `streaming.cu`
 we ran multiple kernels in parallel using page-locked memory.
+
+## Sample Project (Determinant)
+The `Determinant` directory contains the serial and parallel code for calculating the determinant of large matrices. The
+method we used is [LU decomposition](https://en.wikipedia.org/wiki/LU_decomposition), a simple and fast method for determinant 
+calculation. Sample matrices for testing the code is given in `data_in.zip`. You should extract this file before
+running the code in the same directory. The results will be stored in a `data_out` directory with file names similar to input 
+files except that an `outputs_` will be prepended to the name of the input file. 
+
+For the parallelization part, reading from and writing to files are done in parallel using OpenMP, while the 
+determinant calculation gets done on GPU.
