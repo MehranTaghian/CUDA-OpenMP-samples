@@ -62,3 +62,14 @@ multiple free blocks. Therefore, `multiple_blocks.cu` program does this operatio
 . We combined the tiling method with multiple blocks in `multiple_blocks_tiling.cu`.
 Also an example of the matrix multiplication operation using cuBLAS library is given in `matmul_cuBLAS.cu`.
 
+Another section dedicates to **streaming** multiple kernels, and the concept of **pageable** and **pinned memory**. For
+information
+about pageable and pinned memory, please visit the following
+useful [link](https://leimao.github.io/blog/Page-Locked-Host-Memory-Data-Transfer).
+Also for streaming, visit [link](https://leimao.github.io/blog/CUDA-Stream/).
+We use the `Histogram` problem as the example for this section. In the Histogram problem, the goal is to count the
+number of
+different elements in a large array. In the `pageable.cu` we used the pageable memory allocated using the `malloc()`
+function. In the `pinned.cu`, the memory is allocated using `cudaMallocHost()` and is page-locked which makes it faster
+to access the host memory. In order to use streaming and concurrent kernels, the memory requires to be pinned. In the `streaming.cu`
+we ran multiple kernels in parallel using page-locked memory.
